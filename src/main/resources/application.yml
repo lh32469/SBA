@@ -9,11 +9,13 @@ server:
 
 spring:
   application:
-    name: "GPC4J-Admin"
+    name: "Admin"
   boot:
     admin:
       client:
         url: http://dell-4290.local:8099
+        instance:
+          prefer-ip: true
 
 logging:
   pattern:
