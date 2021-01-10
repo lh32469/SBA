@@ -1,9 +1,19 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 server:
   port: 8099
 
 spring:
   application:
     name: "GPC4J-Admin"
+  boot:
+    admin:
+      client:
+        url: http://dell-4290.local:8099
 
 logging:
   pattern:
