@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sba-app
+  name: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sba-app
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sba-app
+    spec:
+      containers:
+        - image: lh32469/sba-BRANCH:BUILD
+          name: sba
+          resources:
+            limits:
+              cpu: "1.25"
+            requests:
+              cpu: ".25"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8099
+              httpHeaders:
+                - name: Custom-Header
+                  value: Awesome
+            initialDelaySeconds: 15
+            periodSeconds: 5
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: svc
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '8099'
+    prometheus.io/path: '/actuator/prometheus'
+spec:
+  selector:
+    app: sba-app
+  ports:
+    - port: 8099 # Default port for image
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sba
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: HOSTNAME.gpc4j.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: sba-service
+                port:
+                  number: 8099
+

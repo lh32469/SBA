@@ -13,9 +13,9 @@ spring:
   boot:
     admin:
       client:
-        url: http://dell-4290.local:8099
-        instance:
-          service-base-url: http://dell-4290.local:8099
+        url: http://localhost:8099
+#        instance:
+#          service-base-url: http://dell-4290.local:8099
 
 logging:
   pattern:
