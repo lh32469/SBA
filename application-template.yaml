@@ -68,7 +68,7 @@ spec:
             path: /
             backend:
               service:
-                name: sba-service
+                name: svc
                 port:
                   number: 8099
 
