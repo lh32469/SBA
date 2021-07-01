@@ -63,6 +63,9 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: basic-auth
     nginx.ingress.kubernetes.io/auth-type: basic
 spec:
+  tls:
+    - hosts:
+        - HOSTNAME.gpc4j.org
   rules:
     - host: HOSTNAME.gpc4j.org
       http:
