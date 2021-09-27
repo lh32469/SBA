@@ -1,30 +1,10 @@
 package org.gpc4j.admin;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.TrustStrategy;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.util.UUID;
-
-@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//@Configuration
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
   private final AdminServerProperties adminServer;
 
@@ -32,64 +12,65 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     this.adminServer = adminServer;
   }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    SavedRequestAwareAuthenticationSuccessHandler successHandler =
-        new SavedRequestAwareAuthenticationSuccessHandler();
-    successHandler.setTargetUrlParameter("redirectTo");
-    successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/");
+//  @Override
+//  protected void configure(HttpSecurity http) throws Exception {
+//    SavedRequestAwareAuthenticationSuccessHandler successHandler =
+//        new SavedRequestAwareAuthenticationSuccessHandler();
+//    successHandler.setTargetUrlParameter("redirectTo");
+//    successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/");
+//
+//    http
+//        .authorizeRequests()
+//        .antMatchers(this.adminServer.getContextPath() + "/assets/**").permitAll()
+//        .antMatchers(this.adminServer.getContextPath() + "/login").permitAll()
+//        .anyRequest().authenticated()
+//        .and()
+//        .formLogin()
+//        .loginPage(this.adminServer.getContextPath() + "/login")
+//        .successHandler(successHandler)
+//        .and()
+//        .logout()
+//        .logoutUrl(this.adminServer.getContextPath() + "/logout")
+//        .and()
+//        .httpBasic()
+//        .and()
+//        .csrf()
+//        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//        .ignoringRequestMatchers(
+//            new AntPathRequestMatcher(this.adminServer.getContextPath() +
+//                "/instances", HttpMethod.POST.toString()),
+//            new AntPathRequestMatcher(this.adminServer.getContextPath() +
+//                "/instances/*", HttpMethod.DELETE.toString()),
+//            new AntPathRequestMatcher(this.adminServer.getContextPath() + "/actuator/**"))
+//        .and()
+//        .rememberMe()
+//        .key(UUID.randomUUID().toString())
+//        .tokenValiditySeconds(1209600);
+//  }
 
-    http
-        .authorizeRequests()
-        .antMatchers(this.adminServer.getContextPath() + "/assets/**").permitAll()
-        .antMatchers(this.adminServer.getContextPath() + "/login").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-        .loginPage(this.adminServer.getContextPath() + "/login")
-        .successHandler(successHandler)
-        .and()
-        .logout()
-        .logoutUrl(this.adminServer.getContextPath() + "/logout")
-        .and()
-        .httpBasic()
-        .and()
-        .csrf()
-        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-        .ignoringRequestMatchers(
-            new AntPathRequestMatcher(this.adminServer.getContextPath() +
-                "/instances", HttpMethod.POST.toString()),
-            new AntPathRequestMatcher(this.adminServer.getContextPath() +
-                "/instances/*", HttpMethod.DELETE.toString()),
-            new AntPathRequestMatcher(this.adminServer.getContextPath() + "/actuator/**"))
-        .and()
-        .rememberMe()
-        .key(UUID.randomUUID().toString())
-        .tokenValiditySeconds(1209600);
-  }
-
-  @Bean
-  public RestTemplate restTemplate()
-      throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-    TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
-
-    SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom()
-        .loadTrustMaterial(null, acceptingTrustStrategy)
-        .build();
-
-    SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
-
-    CloseableHttpClient httpClient = HttpClients.custom()
-        .setSSLSocketFactory(csf)
-        .build();
-
-    HttpComponentsClientHttpRequestFactory requestFactory =
-        new HttpComponentsClientHttpRequestFactory();
-
-    requestFactory.setHttpClient(httpClient);
-    RestTemplate restTemplate = new RestTemplate(requestFactory);
-    return restTemplate;
-  }
+//
+//  @Bean
+//  public RestTemplate restTemplate()
+//      throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+//    TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
+//
+//    SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom()
+//        .loadTrustMaterial(null, acceptingTrustStrategy)
+//        .build();
+//
+//    SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
+//
+//    CloseableHttpClient httpClient = HttpClients.custom()
+//        .setSSLSocketFactory(csf)
+//        .build();
+//
+//    HttpComponentsClientHttpRequestFactory requestFactory =
+//        new HttpComponentsClientHttpRequestFactory();
+//
+//    requestFactory.setHttpClient(httpClient);
+//    RestTemplate restTemplate = new RestTemplate(requestFactory);
+//    return restTemplate;
+//  }
 
 //  @Bean
 //  @Override
