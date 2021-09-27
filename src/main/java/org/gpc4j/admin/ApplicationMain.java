@@ -24,12 +24,14 @@ public class ApplicationMain {
 
   static Logger LOG = LoggerFactory.getLogger(ApplicationMain.class);
 
-  public static void turnOffSslChecking() throws NoSuchAlgorithmException, KeyManagementException {
-    // Install the all-trusting trust manager
-    final SSLContext sc = SSLContext.getInstance("SSL");
-    sc.init(null, new TrustManager[]{new TrustAllCerts()}, null);
-    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-  }
+//  public static void turnOffSslChecking() throws
+//      NoSuchAlgorithmException, KeyManagementException {
+//
+//    // Install the all-trusting trust manager
+//    final SSLContext sc = SSLContext.getInstance("SSL");
+//    sc.init(null, new TrustManager[]{new TrustAllCerts()}, null);
+//    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+//  }
 
   public static void main(String[] args) throws Exception {
 
@@ -38,7 +40,7 @@ public class ApplicationMain {
 
     LOG.info("Starting..  args = " + Arrays.toString(args));
 
-    turnOffSslChecking();
+//    turnOffSslChecking();
     SpringApplication.run(ApplicationMain.class, args);
   }
 
