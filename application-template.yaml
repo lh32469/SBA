@@ -59,6 +59,7 @@ metadata:
   name: sba
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/auth-realm: Authentication Required - foo
     nginx.ingress.kubernetes.io/auth-secret: basic-auth
     nginx.ingress.kubernetes.io/auth-type: basic
@@ -66,6 +67,7 @@ spec:
   tls:
     - hosts:
         - HOSTNAME.gpc4j.org
+      secretName: tls-secret
   rules:
     - host: HOSTNAME.gpc4j.org
       http:
