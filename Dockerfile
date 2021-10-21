@@ -8,6 +8,8 @@ EXPOSE $PORT
 COPY target/spring-boot-admin-*.jar /usr/src/spring-boot-admin.jar
 WORKDIR                /usr/src/
 
+ENV _JAVA_OPTIONS="-Xmx256m"
+
 CMD ["java", "-jar", "spring-boot-admin.jar" ]
 
 HEALTHCHECK --interval=15s --timeout=3s \
