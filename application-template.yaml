@@ -60,9 +60,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/auth-realm: Authentication Required - foo
-    nginx.ingress.kubernetes.io/auth-secret: basic-auth
-    nginx.ingress.kubernetes.io/auth-type: basic
 spec:
   tls:
     - hosts:
@@ -80,11 +77,3 @@ spec:
                 port:
                   number: 8099
 
----
-
-apiVersion: v1
-data:
-  auth: amF5cDokYXByMSQvS0N3L3l3ZyRqdWYzZ2ZxTXN2dmxBUlBhd2xHaE8wCg==
-kind: Secret
-metadata:
-  name: basic-auth
