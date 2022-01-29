@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       app: sba-app
-  strategy: { }
   template:
     metadata:
       labels:
