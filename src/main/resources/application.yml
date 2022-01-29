@@ -1,4 +1,7 @@
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
@@ -8,14 +11,23 @@ server:
   port: 8099
 
 spring:
+  security:
+    user:
+      name: client
+      password: ${SBA_PASS:714df93cf5c9}
   application:
     name: "Admin"
   boot:
     admin:
       client:
         url: http://localhost:8099
-#        instance:
-#          service-base-url: http://dell-4290.local:8099
+        username: client
+        password: ${SBA_PASS:714df93cf5c9}
+        instance:
+          metadata:
+            user:
+              name: client
+              password: ${SBA_PASS:714df93cf5c9}
 
 logging:
   pattern:
