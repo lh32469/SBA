@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: sba-app
   name: sba
@@ -13,7 +12,6 @@ spec:
   strategy: { }
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: sba-app
     spec:
@@ -25,15 +23,15 @@ spec:
               cpu: "1.25"
             requests:
               cpu: ".25"
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8099
-              httpHeaders:
-                - name: Custom-Header
-                  value: Awesome
-            initialDelaySeconds: 15
-            periodSeconds: 5
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: 8099
+#              httpHeaders:
+#                - name: Custom-Header
+#                  value: Awesome
+#            initialDelaySeconds: 15
+#            periodSeconds: 5
 
 ---
 
