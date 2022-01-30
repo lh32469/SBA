@@ -1,4 +1,7 @@
-FROM openjdk:11
+FROM amazoncorretto:11
+
+RUN rm /etc/localtime
+RUN ln -s /usr/share/zoneinfo/PST8PDT /etc/localtime
 
 ENV PORT=8099
 LABEL app.name="spring-boot-admin"
