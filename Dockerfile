@@ -8,7 +8,13 @@ EXPOSE $PORT
 COPY target/spring-boot-admin-*.jar /usr/src/spring-boot-admin.jar
 WORKDIR                /usr/src/
 
-ENV _JAVA_OPTIONS="-Xmx256m"
+ENV _JAVA_OPTIONS="-XX:+UseShenandoahGC \
+-Xmx256m \
+-XX:+UnlockExperimentalVMOptions \
+-XX:MetaspaceSize=25m \
+-XX:MinMetaspaceFreeRatio=10 \
+-XX:ShenandoahUncommitDelay=1000 \
+-XX:ShenandoahGuaranteedGCInterval=10000"
 
 CMD ["java", "-jar", "spring-boot-admin.jar" ]
 
