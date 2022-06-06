@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             new AntPathRequestMatcher(this.adminServer.getContextPath() + "/actuator/**"))
         .and()
         .rememberMe()
-        .key(UUID.randomUUID().toString())
+        .key("84766f68-1698-4e76-a9e9-47ff03a7693d")
         .tokenValiditySeconds(1209600);
   }
 
