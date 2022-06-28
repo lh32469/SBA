@@ -6,6 +6,8 @@ RUN ln -s /usr/share/zoneinfo/PST8PDT /etc/localtime
 ENV PORT=8099
 LABEL app.name="spring-boot-admin"
 
+ENV TZ=America/Los_Angeles
+
 EXPOSE $PORT
 
 COPY target/spring-boot-admin-*.jar /usr/src/spring-boot-admin.jar
