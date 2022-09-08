@@ -18,10 +18,8 @@ spec:
         - image: lh32469/sba-BRANCH:BUILD
           name: sba
           resources:
-            limits:
-              cpu: "1.25"
             requests:
-              cpu: ".25"
+              cpu: "250m"
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health
