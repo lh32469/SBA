@@ -2,6 +2,7 @@ package org.gpc4j.admin;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
+import de.codecentric.boot.admin.server.web.client.InstanceExchangeFilterFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 
 import java.net.InetAddress;
@@ -19,6 +21,7 @@ import java.util.Arrays;
  */
 @SpringBootApplication
 @EnableAdminServer
+//@Configuration
 public class ApplicationMain {
 
   static Logger LOG = LoggerFactory.getLogger(ApplicationMain.class);
@@ -49,9 +52,26 @@ public class ApplicationMain {
     return instance -> {
       HttpHeaders httpHeaders = new HttpHeaders();
       httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
+      httpHeaders.add("Foo", "Bar");
+//      LOG.info("Headers: " + httpHeaders);
       return httpHeaders;
     };
 
+  }
+
+  @Bean
+  public InstanceExchangeFilterFunction auditLog() {
+
+    return (instance, request, next) -> {
+
+      if (HttpMethod.GET.equals(request.method()) || HttpMethod.POST.equals(request.method())) {
+        LOG.info("{} for {} on {}; Headers: {}",
+            request.method(), instance.getId(),
+            request.url(), request.headers());
+      }
+
+      return next.exchange(request);
+    };
   }
 
 //
