@@ -24,6 +24,7 @@ spring:
         username: client
         password: ${SBA_PASS:714df93cf5c9}
         instance:
+          prefer-ip: true
           metadata:
             user:
               name: client
