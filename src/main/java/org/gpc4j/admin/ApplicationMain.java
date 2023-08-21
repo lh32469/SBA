@@ -1,18 +1,17 @@
 package org.gpc4j.admin;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import java.net.InetAddress;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -42,6 +41,17 @@ public class ApplicationMain {
 
 //    turnOffSslChecking();
     SpringApplication.run(ApplicationMain.class, args);
+  }
+
+  @Bean
+  public HttpHeadersProvider customHttpHeadersProvider() {
+
+    return instance -> {
+      HttpHeaders httpHeaders = new HttpHeaders();
+      httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
+      return httpHeaders;
+    };
+
   }
 
 //
