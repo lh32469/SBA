@@ -46,33 +46,33 @@ public class ApplicationMain {
     SpringApplication.run(ApplicationMain.class, args);
   }
 
-  @Bean
-  public HttpHeadersProvider customHttpHeadersProvider() {
+//  @Bean
+//  public HttpHeadersProvider customHttpHeadersProvider() {
+//
+//    return instance -> {
+//      HttpHeaders httpHeaders = new HttpHeaders();
+//      httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
+//      httpHeaders.add("Foo", "Bar");
+////      LOG.info("Headers: " + httpHeaders);
+//      return httpHeaders;
+//    };
+//
+//  }
 
-    return instance -> {
-      HttpHeaders httpHeaders = new HttpHeaders();
-      httpHeaders.add("Accept", MediaType.APPLICATION_JSON.toString());
-      httpHeaders.add("Foo", "Bar");
-//      LOG.info("Headers: " + httpHeaders);
-      return httpHeaders;
-    };
-
-  }
-
-  @Bean
-  public InstanceExchangeFilterFunction auditLog() {
-
-    return (instance, request, next) -> {
-
-      if (HttpMethod.GET.equals(request.method()) && request.url().toString().contains("103.254")) {
-        LOG.info("{} for {} on {}; Headers: {}",
-            request.method(), instance.getId(),
-            request.url(), request.headers());
-      }
-
-      return next.exchange(request);
-    };
-  }
+//  @Bean
+//  public InstanceExchangeFilterFunction auditLog() {
+//
+//    return (instance, request, next) -> {
+//
+//      if (HttpMethod.GET.equals(request.method()) && request.url().toString().contains("103.254")) {
+//        LOG.info("{} for {} on {}; Headers: {}",
+//            request.method(), instance.getId(),
+//            request.url(), request.headers());
+//      }
+//
+//      return next.exchange(request);
+//    };
+//  }
 
 //
 //  @Override
