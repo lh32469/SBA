@@ -64,7 +64,7 @@ public class ApplicationMain {
 
     return (instance, request, next) -> {
 
-      if (HttpMethod.GET.equals(request.method()) || HttpMethod.POST.equals(request.method())) {
+      if (HttpMethod.GET.equals(request.method()) && request.url().toString().contains("103.254")) {
         LOG.info("{} for {} on {}; Headers: {}",
             request.method(), instance.getId(),
             request.url(), request.headers());
