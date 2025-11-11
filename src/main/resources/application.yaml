@@ -26,7 +26,6 @@ spring:
           management-base-url: http://localhost:8090
           # Credentials for the Admin Server to access actuator endpoints of this instance
           metadata:
-            user:
             user.name: admin
             user.password: alt01ds!
   devtools:
