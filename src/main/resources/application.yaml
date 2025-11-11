@@ -1,0 +1,59 @@
+server:
+  shutdown: immediate
+
+spring:
+  main:
+    web-application-type: servlet
+  application:
+    name: sba-server
+  security:
+    user:
+      name: admin
+      password: "{bcrypt}$2a$10$evPmNoK/RQVnZF23NYALJeumDz1mlRfJRNSn.9Wem1o1lXVRTRhp2"
+
+  # Register this app as a Spring Boot Admin client of itself
+  boot:
+    admin:
+      client:
+        # URL of the Admin Server (this app itself)
+        url: http://localhost:8080
+        username: admin
+        password: alt01ds!
+        auto-registration: true
+        instance:
+          name: sba-server (self)
+          prefer-ip: true
+          management-base-url: http://localhost:8090
+          # Credentials for the Admin Server to access actuator endpoints of this instance
+          metadata:
+            user:
+            user.name: admin
+            user.password: alt01ds!
+  devtools:
+    restart:
+      enabled: true
+      restart:
+      poll-interval: 1000
+      # Trigger full restart on any changes under src/main/resources/static
+      # Override Boot's default exclude list (which normally ignores static/**)
+      exclude: ""
+
+# Optional: set a context path for the Admin UI (e.g., "/admin"). Leave commented to use root.
+# spring:
+#   webflux: {}
+# server:
+#   servlet:
+#     context-path: /admin
+
+management:
+  server:
+    port: 8090
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
