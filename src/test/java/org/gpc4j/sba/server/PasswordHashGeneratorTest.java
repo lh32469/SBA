@@ -9,7 +9,7 @@ public class PasswordHashGeneratorTest {
     @Test
     void printBcrypt() {
         PasswordEncoder encoder = new BCryptPasswordEncoder(10);
-        String raw = "alt01ds!";
+        String raw = "Temp01!";
         String hash = encoder.encode(raw);
         System.out.println("[DEBUG_LOG] BCRYPT_HASH=" + hash);
         // Not asserting anything; this test just prints the hash for manual use.

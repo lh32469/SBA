@@ -9,7 +9,7 @@ spring:
   security:
     user:
       name: admin
-      password: "{bcrypt}$2a$10$evPmNoK/RQVnZF23NYALJeumDz1mlRfJRNSn.9Wem1o1lXVRTRhp2"
+      password: "{bcrypt}$2a$10$iIeJeLnH.eyWqPOCRkBiPefX3uSdmJW3t34JKU8bDZZNXRrN8RtH6"
 
   # Register this app as a Spring Boot Admin client of itself
   boot:
@@ -18,7 +18,7 @@ spring:
         # URL of the Admin Server (this app itself)
         url: http://localhost:8080
         username: admin
-        password: alt01ds!
+        password: Temp01!
         auto-registration: true
         instance:
           name: sba-server (self)
@@ -27,7 +27,7 @@ spring:
           # Credentials for the Admin Server to access actuator endpoints of this instance
           metadata:
             user.name: admin
-            user.password: alt01ds!
+            user.password: Temp01!
   devtools:
     restart:
       enabled: true
