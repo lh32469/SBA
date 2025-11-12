@@ -38,6 +38,22 @@ spring:
       # Override Boot's default exclude list (which normally ignores static/**)
       exclude: ""
 
+info:
+  app:
+    name: ${spring.application.name}
+    description: WebTemplate Spring Boot application
+    version: ${project.version:0.0.1-SNAPSHOT}
+    build-date: ${maven.build.timestamp:unknown}
+    build-number: ${git.commit.id.abbrev:unknown}
+#
+#info:
+#  app:
+#    name: ${spring.application.name}
+#    description: WebTemplate Spring Boot application
+#    version: ${project.version:0.0.1-SNAPSHOT}
+#    build-date: ${maven.build.timestamp:unknown}
+#    build-number: ${git.commit.id.abbrev:unknown}
+
 # Optional: set a context path for the Admin UI (e.g., "/admin"). Leave commented to use root.
 # spring:
 #   webflux: {}
