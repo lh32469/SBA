@@ -1,4 +1,5 @@
 server:
+  port: 8085
   shutdown: immediate
 
 spring:
@@ -16,7 +17,7 @@ spring:
     admin:
       client:
         # URL of the Admin Server (this app itself)
-        url: http://localhost:8080
+        url: http://localhost:8085
         username: admin
         password: Temp01!
         auto-registration: true
