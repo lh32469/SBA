@@ -3,6 +3,8 @@ server:
   shutdown: immediate
 
 spring:
+  session:
+    timeout: 1d
   main:
     web-application-type: servlet
   application:
@@ -21,6 +23,7 @@ spring:
         username: admin
         password: Temp01!
         auto-registration: true
+        auto-deregistration: true
         instance:
           name: sba-server (self)
           prefer-ip: true
@@ -32,7 +35,6 @@ spring:
   devtools:
     restart:
       enabled: true
-      restart:
       poll-interval: 1000
       # Trigger full restart on any changes under src/main/resources/static
       # Override Boot's default exclude list (which normally ignores static/**)
