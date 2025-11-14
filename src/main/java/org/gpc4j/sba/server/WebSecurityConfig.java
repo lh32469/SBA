@@ -14,6 +14,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+  static final String REMEMBER_ME_COOKIE = "D24E3843-1748-469E-AED5-ED394D8032A6";
+
   private final AdminServerProperties adminServer;
 
   public WebSecurityConfig(AdminServerProperties adminServer) {
@@ -57,8 +59,15 @@ public class WebSecurityConfig {
             .loginPage(adminContextPath + "/login")
             .successHandler(successHandler)
         )
+        .rememberMe(remember -> remember
+            .key("uniqueAndSecret") // Change this to your own secret key
+            .tokenValiditySeconds(1209600) // 14 days
+            .rememberMeParameter("remember-me") // Match your checkbox name
+            .rememberMeCookieName(REMEMBER_ME_COOKIE)
+        )
         .logout(logout ->
-                    logout.logoutUrl(adminContextPath + "/logout"))
+                    logout.logoutUrl(adminContextPath + "/logout")
+                          .deleteCookies(REMEMBER_ME_COOKIE))
         .httpBasic(Customizer.withDefaults());
 
     return http.build();
