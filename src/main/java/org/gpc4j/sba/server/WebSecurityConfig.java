@@ -55,6 +55,7 @@ public class WebSecurityConfig {
                 adminContextPath + "/assets/**",
                 adminContextPath + "/login",
                 adminContextPath + "/actuator/**",
+                adminContextPath + "/applications/**",
                 adminContextPath + "/instances/**"
             ).permitAll()
             .anyRequest().authenticated()
