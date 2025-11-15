@@ -51,7 +51,7 @@ public class WebSecurityConfig {
             .requestMatchers(
                 adminContextPath + "/assets/**",
                 adminContextPath + "/login",
-                adminContextPath + "/actuator/health/**"
+                adminContextPath + "/actuator/**"
             ).permitAll()
             .anyRequest().authenticated()
         )
