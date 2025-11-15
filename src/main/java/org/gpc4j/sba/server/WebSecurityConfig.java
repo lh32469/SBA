@@ -41,10 +41,14 @@ public class WebSecurityConfig {
             .ignoringRequestMatchers(
                 // Allow the admin server to register instances and access actuator
                 request ->
-                    matchesPath(request.getRequestURI(), adminContextPath + "/instances"),
+                    matchesPath(request.getRequestURI(),
+                                adminContextPath + "/instances"),
                 request ->
                     matchesPath(request.getRequestURI(),
                                 adminContextPath + "/instances/**"),
+                request ->
+                    matchesPath(request.getRequestURI(),
+                                adminContextPath + "/applications/**"),
                 request ->
                     matchesPath(request.getRequestURI(),
                                 adminContextPath + "/actuator/**")
