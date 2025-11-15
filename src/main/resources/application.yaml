@@ -17,6 +17,10 @@ spring:
   # Register this app as a Spring Boot Admin client of itself
   boot:
     admin:
+      server:
+        logging:
+          file:
+            enabled: true
       client:
         # URL of the Admin Server (this app itself)
         url: http://localhost:8085
@@ -71,6 +75,9 @@ management:
       exposure:
         include: "*"
   endpoint:
+    loggers:
+      enabled: true
+      access: unrestricted
     health:
       show-details: always
       probes:
