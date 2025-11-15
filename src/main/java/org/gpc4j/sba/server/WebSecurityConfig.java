@@ -1,6 +1,7 @@
 package org.gpc4j.sba.server;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -24,14 +26,15 @@ public class WebSecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
     String adminContextPath = adminServer.getContextPath();
+    log.info("adminContextPath = ' " + adminContextPath + "'");
 
     SavedRequestAwareAuthenticationSuccessHandler successHandler =
         new SavedRequestAwareAuthenticationSuccessHandler();
     successHandler.setTargetUrlParameter("redirectTo");
     successHandler.setDefaultTargetUrl(adminContextPath + "/");
 
-    System.out.println("[DEBUG_LOG] adminContextPath=" + adminContextPath);
     http
         .csrf(csrf -> csrf
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
