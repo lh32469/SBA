@@ -77,7 +77,6 @@ management:
   endpoint:
     loggers:
       enabled: true
-      access: unrestricted
     health:
       show-details: always
       probes:
