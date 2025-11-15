@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                     matchesPath(request.getRequestURI(), adminContextPath + "/instances"),
                 request ->
                     matchesPath(request.getRequestURI(),
-                                adminContextPath + "/instances/*"),
+                                adminContextPath + "/instances/**"),
                 request ->
                     matchesPath(request.getRequestURI(),
                                 adminContextPath + "/actuator/**")
@@ -54,7 +54,8 @@ public class WebSecurityConfig {
             .requestMatchers(
                 adminContextPath + "/assets/**",
                 adminContextPath + "/login",
-                adminContextPath + "/actuator/**"
+                adminContextPath + "/actuator/**",
+                adminContextPath + "/instances/**"
             ).permitAll()
             .anyRequest().authenticated()
         )
