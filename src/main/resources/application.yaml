@@ -25,7 +25,7 @@ spring:
         # URL of the Admin Server (this app itself)
         url: http://localhost:8085
         username: admin
-        password: Temp01!
+        password: "{bcrypt}$2a$10$z4EYsI64vIhwVIj4TEC6KOfN88i8.QxdFIOQsZZ4FXQDVpX43AumW"
         auto-registration: true
         auto-deregistration: true
         instance:
