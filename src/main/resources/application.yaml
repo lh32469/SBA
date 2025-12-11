@@ -25,7 +25,7 @@ spring:
         # URL of the Admin Server (this app itself)
         url: http://localhost:8085
         username: admin
-        password: "{bcrypt}$2a$10$z4EYsI64vIhwVIj4TEC6KOfN88i8.QxdFIOQsZZ4FXQDVpX43AumW"
+        password: ENC(7qIui/cJtYtCjYFYMNhOdVPOPP2PaQZO4M9a3OwJOSelftRfTlXttX3f7accfBzH)
         auto-registration: true
         auto-deregistration: true
         instance:
@@ -35,7 +35,7 @@ spring:
           # Credentials for the Admin Server to access actuator endpoints of this instance
           metadata:
             user.name: admin
-            user.password: "{bcrypt}$2a$10$z4EYsI64vIhwVIj4TEC6KOfN88i8.QxdFIOQsZZ4FXQDVpX43AumW"
+            user.password: ENC(7qIui/cJtYtCjYFYMNhOdVPOPP2PaQZO4M9a3OwJOSelftRfTlXttX3f7accfBzH)
   devtools:
     restart:
       enabled: true
@@ -43,6 +43,8 @@ spring:
       # Trigger full restart on any changes under src/main/resources/static
       # Override Boot's default exclude list (which normally ignores static/**)
       exclude: ""
+  thymeleaf:
+    check-template-location: false
 
 info:
   app:
