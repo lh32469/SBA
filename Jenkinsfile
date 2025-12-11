@@ -42,6 +42,11 @@ pipeline {
             branch = env.BRANCH_NAME.toLowerCase()
             println "Project/Branch = " + project + "/" + branch
 
+            currentBuild.description = sh(
+               script: 'git log -1 --pretty=%B',
+               returnStdout: true
+            ).trim()
+
             def file = readFile "k8s.yml"
 
             if (branch == "master") {
@@ -92,7 +97,7 @@ pipeline {
     stage('Maven') {
       steps {
         container('maven') {
-          sh 'mvn -B -DskipTests package'
+          sh 'mvn -B package'
         }
       }
     }
