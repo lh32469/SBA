@@ -35,7 +35,7 @@ spring:
           # Credentials for the Admin Server to access actuator endpoints of this instance
           metadata:
             user.name: admin
-            user.password: Temp01!
+            user.password: "{bcrypt}$2a$10$z4EYsI64vIhwVIj4TEC6KOfN88i8.QxdFIOQsZZ4FXQDVpX43AumW"
   devtools:
     restart:
       enabled: true
